@@ -1,0 +1,53 @@
+<!doctype html>
+<html manifest="cache.appcache" lang="es">
+<head>
+  <meta  charset="utf-8">
+  <meta name="description" content="Informacion personal">
+  <meta name="keyswords" content="juego,videojuego,buscaminas">
+  <meta name="author" content="Jose Navarro">
+  <meta name="robots">
+  <title>Contacto</title>
+</head>
+<body>
+  <header>
+    <h1>Contacto</h1>
+  <nav>
+  <ul>
+    <li><a href="index.html">Indice</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="quien_soy.html">¿Quien soy?</a></li>
+    <li><a href="ayuda.html">Ayuda</a></li>
+    <li><a href="configuracion_juego.html">Configuración del juego</a></li>
+  </ul>
+</nav>
+</header>
+<main>
+  <section>
+    <h2>Mi ubicación</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3073.976145865217!2d2.6997037148679173!3d39.605219812516225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129794a6c9fed93f%3A0xbc68b9784718d7b0!2sCarrer+de+Son+Sureda%2C+4%2C+07141+Marratx%C3%AD%2C+Islas+Baleares!5e0!3m2!1ses!2ses!4v1479115382460"></iframe>
+  </section>
+  <section>
+    <h2>Formulario</h2>
+    <form action="index.html" method="post">
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre">
+      <label for="apellido">Apellidos</label>
+      <input type="text" name="apellido" id="apellido">
+      <label for="correo">Correo</label>
+      <input type="email" name="correo" id="correo">
+      <label for="archivo">Adjunta aquí tu archivo</label>
+      <input type="file" name="archivo" id="archivo">
+      <select  name="lista">
+        <option value="personal">Motivo personal</option>
+        <option value="profesional">Motivo profesional</option>
+      </select>
+      <label for="mensaje">Mensaje</label>
+      <textarea name="mensaje" id="mensaje"></textarea>
+      <label for="lopd">Aceptar términos y condiciones</label>
+      <input type="checkbox" name="lopd" id="lopd">
+      <input type="submit" name="boton" value="Enviar">
+    </form>
+  </section>
+</main>
+</body>
+</html>
