@@ -9,14 +9,14 @@
 
 header{
 	background-color: #4527A0;
+	height: 100px;
 }
 
 header h1{
 	text-align: left;
 }
-
-nav{
-	background-color: #4527A0;
+nav ul{
+	margin-top: 10px;
 }
 
 nav li{
@@ -28,7 +28,7 @@ nav li{
 nav a{
 	color: #FF5722;
 }
-@media(min-width: 680px){
+@media(min-width: 341px){
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
 	.col-3 {width: 25%;}
@@ -46,9 +46,17 @@ nav a{
 	}
 }
 
-@media(max-width: 679px){
+@media(max-width: 340px){
 	[class^="col-"] {
 		width: 100%;
 		float: left;
+	}
+
+	nav li{
+		display: block;	
+	}
+
+	header{
+		height: 255px;
 	}
 }
