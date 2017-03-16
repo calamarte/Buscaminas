@@ -13,6 +13,7 @@ header{
 }
 
 header h1{
+	font-size: 3em;
 	text-align: left;
 	padding-left:10px;
 }
@@ -43,15 +44,18 @@ body{
     background-color:#0d0d0d;
 }
 
-.buscaminas{
-	position: absolute;
-    background-image:url(img/construccion.png);
-    background-size: contain;
-    height: 100%;
+main{
+	color: #E0E0E0;
+}
+
+
+/*.buscaminas{
+	position: absolute; 	
+	background-image:url(img/construccion.png);
+    background-size: cover;
     background-position:center;
     background-repeat:no-repeat;
-    margin-top: 10%;
-}
+}*/
 
 @media(min-width: 341px){
 	.col-1 {width: 8.33%;}
