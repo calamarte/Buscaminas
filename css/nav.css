@@ -44,10 +44,13 @@ body{
 }
 
 .buscaminas{
+	position: absolute;
     background-image:url(img/construccion.png);
+    background-size: contain;
+    height: 100%;
     background-position:center;
     background-repeat:no-repeat;
-    padding-top:600px;
+    margin-top: 10%;
 }
 
 @media(min-width: 341px){
