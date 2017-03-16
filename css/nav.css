@@ -26,7 +26,13 @@ nav li{
 }
 
 nav a{
-	color: #FF5722;
+	color: white;
+}
+
+body{
+	background-image: url('img/fondo.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 @media(min-width: 341px){
 	.col-1 {width: 8.33%;}
