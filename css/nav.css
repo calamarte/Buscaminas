@@ -12,7 +12,6 @@ header{
 	background-color: #4527A0;
 	height: 115px;
 }
-
 header h1{
 	font-size: 3em;
 	text-align: left;
@@ -73,22 +72,24 @@ section{
 
 .historia p{
     text-align:justify;
-    padding-left:80px;
-    padding-right:80px;
-    margin-bottom:50px;
+    padding-left:10%;
+    padding-right:10%;
+    margin-bottom:10px;
+    font-size: .9em;
 }
 
 .historia p::first-letter{
     font-size:1.6em;
 }
 
-p:first-child{
-    background-color:red; /*Que pasa aqui?*/
+.historia :nth-child(2){
+    margin-top: 30px; 
 }
 
 .fotos img,video{
-    width:100%;
+    width:50%;
     height:50%;
+    float: left;
 }
 
 .fotos{
@@ -102,7 +103,7 @@ p:first-child{
     background-repeat:no-repeat;
 }*/
 
-@media(min-width: 341px){
+@media(min-width: 357px){
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
 	.col-3 {width: 25%;}
@@ -120,7 +121,7 @@ p:first-child{
 	}
 }
 
-@media(max-width: 340px){
+@media(max-width: 356px){
 	[class*="col-"] {
 		width: 100%;
 		float: left;
@@ -132,5 +133,9 @@ p:first-child{
 
 	header{
 		height: 255px;
+	}
+
+	header h1{
+		font-size: 2em;
 	}
 }
