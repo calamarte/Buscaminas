@@ -71,10 +71,10 @@ section{
 	border-radius: 15px;
 }
 
-.formulario div{
-	margin-left: 20%;
+.formulario div,#enviar{
+	margin-left: 15%;
 	margin-top:25px;
-	margin-right: 70px;
+	margin-right: 10%;
 }
 
 .formulario input,textarea,select{
@@ -83,23 +83,14 @@ section{
 	width: 70%
 }
 
+.formulario input,textarea:hover{
+	cursor: text;
+}
+
 .formulario label{
 	margin-right: 20px;
 }
 
-.formulario .nombre input{
-	/*width: 200px;*/
-	
-}
-
-.formulario .apellido input{
-	/*width: 190.17px;*/
-	
-}
-
-.formulario .apellido input{
-
-}
 .formulario .archivo input{
 	width: .1px;
 	height: .1px;
@@ -117,6 +108,46 @@ section{
 	color: black;
 	background-color:#6a5d65;
 	border-radius: 20px;
+}
+
+.formulario .motivo label{
+	width: 20%;
+}
+
+.formulario .motivo select{
+	width: 90%;
+}
+
+.formulario .mensaje label{
+	width: 20%;
+}
+
+.formulario .mensaje textarea{
+	width: 90%;
+	height: 50px;
+}
+
+.formulario .terminos label{
+	font-size: .75em;
+	float: left;
+}
+
+.formulario .terminos input{
+	cursor: pointer;
+	width: 5%;
+	float: left;
+}
+
+#enviar{
+	cursor: pointer;
+	width: 72%
+}
+
+#enviar:hover{
+	background-image: url(img/mina.png);
+	background-size: contain;
+	background-position: center;
+	background-color: red;
 }
 
 .historia p{
@@ -152,7 +183,7 @@ section{
     background-repeat:no-repeat;
 }*/
 
-@media(min-width: 357px){
+@media(min-width: 700px){
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
 	.col-3 {width: 25%;}
@@ -170,13 +201,14 @@ section{
 	}
 }
 
-@media(max-width: 356px){
+@media(max-width: 699px){
 	[class*="col-"] {
 		width: 100%;
 		float: left;
 	}
 
 	nav li{
+		text-align: center;
 		display: block;	
 	}
 
@@ -185,6 +217,12 @@ section{
 	}
 
 	header h1{
+		text-align: center;
 		font-size: 2em;
 	}
+
+	.formulario div,#enviar{
+	margin-left: 15%;
+	margin-top:25px;
+	margin-right: 5%;
 }
