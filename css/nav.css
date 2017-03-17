@@ -72,15 +72,34 @@ section{
 }
 
 .formulario div{
+	margin-left: 20%;
+	margin-top:25px;
+	margin-right: 70px;
 }
 
 .formulario input,textarea,select{
 	background-color: #6a5d65;
+	border-radius: 5px;
+	width: 70%
 }
 
-.formulario {
+.formulario label{
+	margin-right: 20px;
 }
 
+.formulario .nombre input{
+	/*width: 200px;*/
+	
+}
+
+.formulario .apellido input{
+	/*width: 190.17px;*/
+	
+}
+
+.formulario .apellido input{
+
+}
 .formulario .archivo input{
 	width: .1px;
 	height: .1px;
