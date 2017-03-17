@@ -61,7 +61,7 @@ section{
 }
 
 .mapa{
-	height: 400px;
+	height: 500px;
 }
 
 .mapa iframe{
@@ -69,6 +69,21 @@ section{
 	height: 90%;
 	border: 5px outset grey;
 	border-radius: 15px;
+}
+
+.historia h2{
+    margin-bottom:50px;
+}
+
+.historia p{
+    text-align:justify;
+    padding-left:80px;
+    padding-right:80px;
+    margin-bottom:50px;
+}
+
+.historia p::first-letter{
+    font-size:1.6em;
 }
 
 /*.buscaminas{
