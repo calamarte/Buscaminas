@@ -30,23 +30,38 @@
   <section class="formulario col-6">
     <h2>Formulario</h2>
     <form action="index.html" method="post">
+    <div class="nombre">
       <label for="nombre">Nombre</label>
       <input type="text" name="nombre" id="nombre">
+    </div>
+    <div class="apellido">
       <label for="apellido">Apellidos</label>
       <input type="text" name="apellido" id="apellido">
+    </div>
+    <div class="correo">
       <label for="correo">Correo</label>
       <input type="email" name="correo" id="correo">
+    </div>
+    <div class="archivo">
       <label for="archivo">Adjunta aquí tu archivo</label>
       <input type="file" name="archivo" id="archivo">
+    </div>
+    <div class="motivo">
+    <p>Motivo</p>
       <select  name="lista">
-        <option value="personal">Motivo personal</option>
-        <option value="profesional">Motivo profesional</option>
+        <option value="personal">Personal</option>
+        <option value="profesional">Profesional</option>
       </select>
+    </div>
+    <div class="mensaje">
       <label for="mensaje">Mensaje</label>
       <textarea name="mensaje" id="mensaje"></textarea>
+    </div>
+    <div class="terminos">
       <label for="lopd">Aceptar términos y condiciones</label>
       <input type="checkbox" name="lopd" id="lopd">
-      <input type="submit" name="boton" value="Enviar">
+    </div>
+      <input type="submit" name="boton" value="Enviar" id="enviar">
     </form>
   </section>
 </main>
