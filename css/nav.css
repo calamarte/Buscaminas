@@ -5,11 +5,12 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Orbitron';
+	/*border:1px solid white; /*quitar*/
 }
 
 header{
 	background-color: #4527A0;
-	height: 100px;
+	height: 115px;
 }
 
 header h1{
@@ -48,6 +49,27 @@ main{
 	color: #E0E0E0;
 }
 
+h2{
+	color:#4527A0;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+section{
+	margin-top:30px;
+	padding: 10px;
+}
+
+.mapa{
+	height: 400px;
+}
+
+.mapa iframe{
+	width: 100%;
+	height: 90%;
+	border: 5px outset grey;
+	border-radius: 15px;
+}
 
 /*.buscaminas{
 	position: absolute; 	
@@ -70,13 +92,13 @@ main{
 	.col-10 {width: 83.33%;} 
 	.col-11 {width: 91.66%;}
 	.col-12 {width: 100%;}
-	[class^="col-"] {
+	[class*="col-"] {
 		float: left;
 	}
 }
 
 @media(max-width: 340px){
-	[class^="col-"] {
+	[class*="col-"] {
 		width: 100%;
 		float: left;
 	}
