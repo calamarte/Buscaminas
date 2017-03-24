@@ -195,8 +195,9 @@ section{
 @keyframes movimiento{
 	50%{
         transform:rotate(360deg);
-        margin-left: 90%;
+        margin-left: calc(100% - 255px);
 	}
+	
 	100%{
 	    margin-left: 0;
 	}
@@ -251,7 +252,18 @@ section{
 	}
 
 	.formulario div,#enviar{
-	margin-left: 15%;
-	margin-top:25px;
-	margin-right: 5%;
+		margin-left: 15%;
+		margin-top:25px;
+		margin-right: 5%;
+	}
+
+	.animacion{
+		text-align: center;
+	}
+
+	@keyframes movimiento{
+		100%{
+	    	transform:rotate(360deg);
+		}
+	}	
 }
