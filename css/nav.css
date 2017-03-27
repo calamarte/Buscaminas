@@ -189,7 +189,7 @@ section{
 
 
 .animacion img{
-	animation: movimiento 3s infinite
+	animation: movimiento 3s infinite;
 }
 
 @keyframes movimiento{
