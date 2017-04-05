@@ -171,10 +171,6 @@ section{
     margin-top: 30px; 
 }
 
-.fotos{
-    height:500px;/*cambiar foto*/
-}
-
 .fotos img,video{
 	width: 100%;
 	height: 50%;
