@@ -78,13 +78,13 @@ section{
 	margin-right: 10%;
 }
 
-.formulario input,textarea,select{
+input,textarea,select{
 	background-color: #6a5d65;
 	border-radius: 5px;
 	width: 70%
 }
 
-.formulario input,textarea:hover{
+.formulario input,.formulario textarea:hover{
 	cursor: text;
 }
 
@@ -101,7 +101,7 @@ section{
 	z-index: -1;
 }
 
-.formulario .archivo label,input{
+.formulario .archivo label,.formulario .archivo input{
 	cursor: pointer;
 }
 
@@ -171,7 +171,7 @@ section{
     margin-top: 30px; 
 }
 
-.fotos img,video,iframe{
+.fotos img,.fotos video,.fotos iframe{
 	width: 100%;
     float: left;
     padding-left: 70px;
@@ -187,8 +187,39 @@ section{
 .fotos img{
 	margin-bottom: 10px;
 }
+.config div{
+    margin-left: 20%;
+    margin-top: 20px;
+}
 
+.config label{
+    color: #E0E0E0;
+}
+.config select,.config {
 
+}
+/*.config div{
+    margin-top: 50px;
+}
+.config .dificultad select{
+    width: 40%;
+}
+
+.config .tamaño select{
+    width: 50%;
+}
+
+.config .tamaño{
+    margin-left:10%;
+}
+.config .sonido select{
+    width: 60%;
+}
+
+.config .sonido{
+    margin-left: 20%;
+}
+*/
 .animacion img{
 	animation: movimiento 3s infinite;
 }

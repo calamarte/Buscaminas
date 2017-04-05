@@ -25,24 +25,30 @@
    <section class="col-12 config">
      <h2>Opciones</h2>
      <form action="index.html" method="post"><!--Sonido, Tamaño, Dificultad-->
-       Dificultad
-       <select name="dificultad">
+         <div class="dificultad">
+         <label for="dificultad">Dificultad</label>
+       <select name="dificultad" id="dificultad">
          <option value="facil">Facil</option>
          <option selected value="normal">Normal</option>
          <option value="dificil">Difícil</option>
        </select>
-       Tamaño
-       <select name="tamaño">
+         </div>
+         <div class="tamaño">
+         <label for="tamaño">Tamaño</label>
+       <select name="tamaño" id="tamaño">
          <option value="pequeño">Pequeño</option>
          <option selected value="mediano">Mediano</option>
-         <option value="grande">Grnade</option>
+         <option value="grande">Grande</option>
        </select>
-       Sonido
-       <select name="sonido">
+         </div>
+         <div class="sonido">
+         <label for="sonido">Sonido</label>
+       <select name="sonido" id="sonido">
          <option value="mute">Silencio</option>
          <option selected="" value="normal">Normal</option>
          <option value="fuerte">Fuerte</option>
        </select>
+         </div>
      </form>
    </section>
   </body>
