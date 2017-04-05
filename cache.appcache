@@ -2,14 +2,13 @@ CACHE MANIFEST
 #11/11/16
 #Solo he creado un cache para todos los archivos
 #No se si es lo adecuado o es mejor hacer uno para cada archivo
-/index.html
-/ayuda.html
-/configuracion_juego.html
-/juego.html
-/contacto.html
-/quien_soy.html
-/foto_personal.png
-/video_personal.mp4
+/Trabajo/index.html
+/Trabajo/ayuda.html
+/Trabajo/configuracion_juego.html
+/Trabajo/contacto.html
+/Trabajo/quien_soy.html
+/Trabajo/foto_personal.jpg
+/Trabajo/video_personal.mp4
 NETWORK:
 *
 FALLBACK:
