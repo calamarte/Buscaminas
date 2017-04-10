@@ -99,7 +99,7 @@ input,textarea,select{
 	z-index: -1;
 }
 
-.formulario .archivo label,.formulario .archivo input{
+.formulario .archivo label,.formulario .archivo input,select{
 	cursor: pointer;
 }
 
