@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Audiowide|Clicker+Script|Covered+By+Your+Grace|Gloria+Hallelujah|Griffy|Indie+Flower|Kaushan+Script|Lobster|Orbitron|Permanent+Marker|Special+Elite|VT323');
-
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Orbitron';
-	/*border:1px solid white; /*quitar*/
 }
 
 header{
@@ -198,28 +196,7 @@ input,textarea,select{
 .config select,.config {
 
 }
-/*.config div{
-    margin-top: 50px;
-}
-.config .dificultad select{
-    width: 40%;
-}
 
-.config .tamaño select{
-    width: 50%;
-}
-
-.config .tamaño{
-    margin-left:10%;
-}
-.config .sonido select{
-    width: 60%;
-}
-
-.config .sonido{
-    margin-left: 20%;
-}
-*/
 .animacion img{
 	animation: movimiento 3s infinite;
 }
@@ -235,15 +212,6 @@ input,textarea,select{
 	}
 }
 
-/*.buscaminas{
-	width:100%;
-	height: 100%; 
-	position: fixed; 	
-	background-image:url(img/construccion.png);
-	background-position: center;
-    background-size: contain;
-    background-repeat:no-repeat;
-}*/
 
 @media(min-width: 700px){
 	.col-1 {width: 8.33%;}
