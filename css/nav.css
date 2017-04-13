@@ -4,6 +4,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Orbitron';
+   /* border:1px solid white;*/
 }
 
 header{
@@ -192,9 +193,6 @@ input,textarea,select{
 
 .config label{
     color: #E0E0E0;
-}
-.config select,.config {
-
 }
 
 .animacion img{
