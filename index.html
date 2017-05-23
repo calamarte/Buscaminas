@@ -24,14 +24,13 @@
     </nav>
   </header>
     <main>
-      <div class="buscaminas col-12">
+      <div>
         <canvas id="minas" width="500" height="500">
-
         </canvas>
       </div>
-      <div class="animacion col-12">
-      	<img src="mina.png" alt="una mina">
-      </div>
+      <!--<div class="animacion col-12">-->
+      	<!--<img src="mina.png" alt="una mina">-->
+      <!--</div>-->
     </main>
     <script type="text/javascript">
       var canvas = document.getElementById("minas");
@@ -42,26 +41,52 @@
       var y = 0;
       var x = 0;
       var cont = 0;
+      var tam = 25;
+      var bombas = 100;
 
-      for(var i = 0; i < 25;i++){
-          for(var j = 0; j < 25;j++){
-              var aux = new celda(25,x,y);
-              a[cont] = (new celda(25,x,y));
+      for(var i = 0; i < 20;i++){
+          for(var j = 0; j < 20;j++){
+              var aux = new celda(tam,x,y);
+              a[cont] = (new celda(tam,x,y));
              // ctx.fillStyle = "red";
               //ctx.fillRe
               aux.pintarIn();
               aux.pintarBo();
-              x += 25;
+              x += tam;
               cont++
           }
           x = 0;
-          y +=25;
+          y +=tam;
+      }
+      bombasPos();
+
+      function bombasPos() {
+          for(var i = 0; i < bombas ; i++){
+              var r = Math.round(Math.random() * 400);
+              if(a[r].mina){
+                  i--;
+                  continue;
+              }
+
+              a[r].mina = true;
+              //fallan limites
+              if (r - 1 >= 0 && !a[r-1].mina)a[r-1].minacerca++;
+              if (r + 1 <= 400 && !a[r+1].mina)a[r+1].minacerca++;
+              if (r - 21 >= 0 && !a[r-21].mina)a[r-21].minacerca++;
+              if (r - 20 >= 0 && !a[r-20].mina)a[r-20].minacerca++;
+              if (r - 19 >= 0 && !a[r-19].mina)a[r-19].minacerca++;
+              if (r + 19 <= 400 && !a[r+19].mina)a[r+19].minacerca++;
+              if (r + 20 <= 400 && !a[r+20].mina)a[r+20].minacerca++;
+              if (r + 21 <= 400 && !a[r+21].mina)a[r+21].minacerca++;
+
+          }
       }
 
       function celda(tamano,x,y) {
           this.x = x;
           this.y = y;
           this.mina = false;
+          this.minacerca = 0;
           this.t = tamano;
 
           this.pintarBo = function () {
@@ -74,9 +99,17 @@
           };
 
           this.explotar = function () {
-            if (this.mina)ctx.fillStyle = "red";
-            else ctx.fillStyle = "blue";
-            ctx.fillRect(x,y,this.t,this.t);
+            if (this.mina){
+                ctx.fillStyle = "red";
+                ctx.fillRect(x,y,this.t,this.t);
+            }
+            else {
+                ctx.fillStyle = "blue";
+                ctx.fillRect(x,y,this.t,this.t);
+                ctx.fillStyle = "white";
+                ctx.font = "20px Arial";
+                ctx.fillText(JSON.stringify(this.minacerca),x+5,y+20);
+            }
           };
       }
 
@@ -88,7 +121,7 @@
 
         function jugar(x,y) {
             for(var i = 0; i < a.length;i++){
-                if (x < (a[i].x +25) && x > a[i].x && y < (a[i].y + 25) && y > a[i].y){
+                if (x < (a[i].x +tam) && x > a[i].x && y < (a[i].y + tam) && y > a[i].y){
                     a[i].explotar();
                 }
             }
