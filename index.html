@@ -25,11 +25,75 @@
   </header>
     <main>
       <div class="buscaminas col-12">
-        <canvas id="minas" width="" height=""></canvas>
+        <canvas id="minas" width="500" height="500">
+
+        </canvas>
       </div>
       <div class="animacion col-12">
       	<img src="mina.png" alt="una mina">
       </div>
     </main>
+    <script type="text/javascript">
+      var canvas = document.getElementById("minas");
+      var canvasTa = canvas.width;
+      var p = canvas.getBoundingClientRect();
+      var ctx = canvas.getContext("2d");
+      var a = [];
+      var y = 0;
+      var x = 0;
+      var cont = 0;
+
+      for(var i = 0; i < 25;i++){
+          for(var j = 0; j < 25;j++){
+              var aux = new celda(25,x,y);
+              a[cont] = (new celda(25,x,y));
+             // ctx.fillStyle = "red";
+              //ctx.fillRe
+              aux.pintarIn();
+              aux.pintarBo();
+              x += 25;
+              cont++
+          }
+          x = 0;
+          y +=25;
+      }
+
+      function celda(tamano,x,y) {
+          this.x = x;
+          this.y = y;
+          this.mina = false;
+          this.t = tamano;
+
+          this.pintarBo = function () {
+            ctx.strokeRect(x,y,this.t,this.t);
+          };
+
+          this.pintarIn =function () {
+              ctx.fillStyle = "white";
+                ctx.fillRect(x,y,this.t,this.t);
+          };
+
+          this.explotar = function () {
+            if (this.mina)ctx.fillStyle = "red";
+            else ctx.fillStyle = "blue";
+            ctx.fillRect(x,y,this.t,this.t);
+          };
+      }
+
+      canvas.addEventListener("click",function (e) {
+          var x = e.clientX - p.left;
+          var y = e.clientY - p.top;
+          jugar(x,y);
+      });
+
+        function jugar(x,y) {
+            for(var i = 0; i < a.length;i++){
+                if (x < (a[i].x +25) && x > a[i].x && y < (a[i].y + 25) && y > a[i].y){
+                    a[i].explotar();
+                }
+            }
+        }
+
+    </script>
   </body>
 </html>
