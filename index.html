@@ -42,7 +42,7 @@
       var x = 0;
       var cont = 0;
       var tam = 25;
-      var bombas = 100;
+      var bombas = 50;
 
       for(var i = 0; i < 20;i++){
           for(var j = 0; j < 20;j++){
@@ -69,20 +69,21 @@
               }
 
               a[r].mina = true;
+
               //fallan limites
               if (r - 1 >= 0 && !a[r-1].mina)a[r-1].minacerca++;
-              if (r + 1 <= 400 && !a[r+1].mina)a[r+1].minacerca++;
+              if (r + 1 < 400 && !a[r+1].mina)a[r+1].minacerca++;
               if (r - 21 >= 0 && !a[r-21].mina)a[r-21].minacerca++;
               if (r - 20 >= 0 && !a[r-20].mina)a[r-20].minacerca++;
               if (r - 19 >= 0 && !a[r-19].mina)a[r-19].minacerca++;
-              if (r + 19 <= 400 && !a[r+19].mina)a[r+19].minacerca++;
-              if (r + 20 <= 400 && !a[r+20].mina)a[r+20].minacerca++;
-              if (r + 21 <= 400 && !a[r+21].mina)a[r+21].minacerca++;
+              if (r + 19 < 400 && !a[r+19].mina)a[r+19].minacerca++;
+              if (r + 20 < 400 && !a[r+20].mina)a[r+20].minacerca++;
+              if (r + 21 < 400 && !a[r+21].mina)a[r+21].minacerca++;
 
           }
       }
 
-      function celda(tamano,x,y) {
+      function celda(tamano,x,y,minacerca) {
           this.x = x;
           this.y = y;
           this.mina = false;
