@@ -34,32 +34,37 @@
     </main>
     <script type="text/javascript">
       var canvas = document.getElementById("minas");
-      var canvasTa = canvas.width;
       var p = canvas.getBoundingClientRect();
       var ctx = canvas.getContext("2d");
       var a = [];
-      var y = 0;
-      var x = 0;
-      var cont = 0;
-      var tam = 25;
-      var bombas = 50;
-
-      for(var i = 0; i < 20;i++){
-          for(var j = 0; j < 20;j++){
-              var aux = new celda(tam,x,y);
-              a[cont] = (new celda(tam,x,y));
-             // ctx.fillStyle = "red";
-              //ctx.fillRe
-              aux.pintarIn();
-              aux.pintarBo();
-              x += tam;
-              cont++
+      var tam = 25;//25
+      var bombas = 25;//limite 358
+      var imgMina = new Image();
+      imgMina.src = "css/img/mina.png";
+      var end;
+        //20
+      init();
+      function init() {
+          var y = 0;
+          var x = 0;
+          var cont = 0;
+          for(var i = 0; i < 20;i++){
+              for(var j = 0; j < 20;j++){
+                  var aux = new celda(tam,x,y);
+                  a[cont] = (new celda(tam,x,y));
+                  // ctx.fillStyle = "red";
+                  //ctx.fillRe
+                  aux.pintarIn();
+                  aux.pintarBo();
+                  x += tam;
+                  cont++
+              }
+              x = 0;
+              y +=tam;
           }
-          x = 0;
-          y +=tam;
+          bombasPos();
+          end = false;
       }
-      bombasPos();
-
       function bombasPos() {
           for(var i = 0; i < bombas ; i++){
               var r = Math.round(Math.random() * 400);
@@ -69,16 +74,38 @@
               }
 
               a[r].mina = true;
+              var lateral = 0;
+              for(var j = 0,aux = 20; j < 19; j++,aux+=20){
+                  if (r === aux){
+                      lateral = 1;
+                      break;
+                  }
+              }
+
+              if (lateral === 0){
+                  for(var j = 0,aux = 19; j < 19; j++,aux+=20){
+                      if (r === aux){
+                          lateral = 2;
+                          break;
+                      }
+                  }
+              }
 
               //fallan limites
-              if (r - 1 >= 0 && !a[r-1].mina)a[r-1].minacerca++;
-              if (r + 1 < 400 && !a[r+1].mina)a[r+1].minacerca++;
-              if (r - 21 >= 0 && !a[r-21].mina)a[r-21].minacerca++;
+              if (lateral !== 1){
+                  if (r - 1 >= 0 && !a[r-1].mina)a[r-1].minacerca++;
+                  if (r - 21 >= 0 && !a[r-21].mina)a[r-21].minacerca++;
+                  if (r + 19 < 400 && !a[r+19].mina)a[r+19].minacerca++;
+              }
+
+              if (lateral !== 2){
+                  if (r - 19 >= 0 && !a[r-19].mina)a[r-19].minacerca++;
+                  if (r + 1 < 400 && !a[r+1].mina)a[r+1].minacerca++;
+                  if (r + 21 < 400 && !a[r+21].mina)a[r+21].minacerca++;
+              }
+
               if (r - 20 >= 0 && !a[r-20].mina)a[r-20].minacerca++;
-              if (r - 19 >= 0 && !a[r-19].mina)a[r-19].minacerca++;
-              if (r + 19 < 400 && !a[r+19].mina)a[r+19].minacerca++;
               if (r + 20 < 400 && !a[r+20].mina)a[r+20].minacerca++;
-              if (r + 21 < 400 && !a[r+21].mina)a[r+21].minacerca++;
 
           }
       }
@@ -103,27 +130,39 @@
             if (this.mina){
                 ctx.fillStyle = "red";
                 ctx.fillRect(x,y,this.t,this.t);
+                ctx.drawImage(imgMina,x,y,25,25);
             }
             else {
-                ctx.fillStyle = "blue";
+                ctx.fillStyle = "grey";
                 ctx.fillRect(x,y,this.t,this.t);
-                ctx.fillStyle = "white";
-                ctx.font = "20px Arial";
-                ctx.fillText(JSON.stringify(this.minacerca),x+5,y+20);
+                if(this.minacerca !== 0) {
+                    ctx.fillStyle = "white";
+                    ctx.font = "20px Orbitron";
+                    ctx.fillText(JSON.stringify(this.minacerca), x + 5, y + 20);
+                }
             }
+            ctx.strokeRect(x,y,this.t,this.t);
           };
       }
 
       canvas.addEventListener("click",function (e) {
           var x = e.clientX - p.left;
           var y = e.clientY - p.top;
-          jugar(x,y);
+          if(!end) jugar(x,y);
       });
 
         function jugar(x,y) {
             for(var i = 0; i < a.length;i++){
                 if (x < (a[i].x +tam) && x > a[i].x && y < (a[i].y + tam) && y > a[i].y){
                     a[i].explotar();
+                    if (a[i].mina) end = true;
+                    if(a[i].minacerca === 0){
+                        for(var j = 0; j < 400;j++){
+                            if(a[j].minacerca === 0 && a[j].mina === false){
+                                a[j].explotar();
+                            }
+                        }
+                    }
                 }
             }
         }
