@@ -41,6 +41,8 @@
       var bombas = 25;//limite 358
       var imgMina = new Image();
       imgMina.src = "css/img/mina.png";
+      var imgBandera = new Image();
+      imgBandera.src = "css/img/bandera.png";
       var end;
         //20
       init();
@@ -52,8 +54,6 @@
               for(var j = 0; j < 20;j++){
                   var aux = new celda(tam,x,y);
                   a[cont] = (new celda(tam,x,y));
-                  // ctx.fillStyle = "red";
-                  //ctx.fillRe
                   aux.pintarIn();
                   aux.pintarBo();
                   x += tam;
@@ -110,12 +110,14 @@
           }
       }
 
-      function celda(tamano,x,y,minacerca) {
+      function celda(tamano,x,y) {
           this.x = x;
           this.y = y;
+          this.bandera = false;
           this.mina = false;
           this.minacerca = 0;
           this.t = tamano;
+          this.explotado = false;
 
           this.pintarBo = function () {
             ctx.strokeRect(x,y,this.t,this.t);
@@ -142,7 +144,20 @@
                 }
             }
             ctx.strokeRect(x,y,this.t,this.t);
+            this.explotado = true;
           };
+
+          this.pintarBandera = function () {
+              if (this.explotado)return;
+              if (this.bandera){
+                  this.pintarIn();
+                  this.pintarBo();
+                  this.bandera = false;
+              }else {
+                  ctx.drawImage(imgBandera,x+2,y+2,19,21);
+                  this.bandera = true;
+              }
+          }
       }
 
       canvas.addEventListener("click",function (e) {
@@ -150,16 +165,33 @@
           var y = e.clientY - p.top;
           if(!end) jugar(x,y);
       });
+      canvas.addEventListener("contextmenu",function (e){
+          e.preventDefault();
+          var x = e.clientX - p.left;
+          var y = e.clientY - p.top;
+          if(!end) ponerBandera(x,y);
+      });
 
+      function ponerBandera(x,y) {
+          for(var i = 0; i < a.length;i++){
+              if (x < (a[i].x +tam) && x > a[i].x && y < (a[i].y + tam) && y > a[i].y){
+                  a[i].pintarBandera();
+              }
+          }
+      }
         function jugar(x,y) {
             for(var i = 0; i < a.length;i++){
                 if (x < (a[i].x +tam) && x > a[i].x && y < (a[i].y + tam) && y > a[i].y){
+                    if(a[i].bandera)return;
                     a[i].explotar();
                     if (a[i].mina) end = true;
+                    a[i].bandera = false;
                     if(a[i].minacerca === 0){
                         for(var j = 0; j < 400;j++){
                             if(a[j].minacerca === 0 && a[j].mina === false){
+                                if(a[j].bandera)continue;
                                 a[j].explotar();
+                                a[j].bandera = false;
                             }
                         }
                     }
