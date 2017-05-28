@@ -33,9 +33,7 @@
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
     <script src="intro.js"></script>
     <script>
-      var canvas = document.getElementById("minas");
       var p = canvas.getBoundingClientRect();
-      var ctx = canvas.getContext("2d");
       var a = [];
       var tam = 25;//25
       var bombas = 25;//limite 358
@@ -44,8 +42,6 @@
       var imgBandera = new Image();
       imgBandera.src = "css/img/bandera.png";
       var end;
-      var sound = true;
-      createjs.Sound.registerSound("sound/fondo.wav", "background");
       createjs.Sound.registerSound("sound/inicio.wav", "inicio");
       createjs.Sound.registerSound("sound/click.wav", "click");
       createjs.Sound.registerSound("sound/bum.mp3", "bum");
@@ -171,9 +167,7 @@
       canvas.addEventListener("click",function (e) {
           var x = e.clientX - p.left;
           var y = e.clientY - p.top;
-          if(!end) {
-              jugar(x,y);
-          }
+          if(!end)jugar(x,y);
 
       });
       canvas.addEventListener("contextmenu",function (e){
@@ -199,16 +193,14 @@
                     a[i].explotar();
                     if (a[i].mina) {
                         end = true;
-                        setTimeout(function () {
-                           alert("Game Over");
-                        },1000);
+                        setTimeout(function (){alert("Game Over");},1000);
                         if(sound) return createjs.Sound.play("bum");
                         else return;
                     }
                     a[i].bandera = false;
                     if(a[i].minacerca === 0){
                         for(var j = 0; j < 400;j++){
-                            if(a[j].minacerca === 0 && a[j].mina === false){
+                            if(a[j].minacerca === 0 && !a[j].mina && !explotado){
                                 if(a[j].bandera)continue;
                                 a[j].explotar();
                                 a[j].bandera = false;

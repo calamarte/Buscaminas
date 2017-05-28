@@ -1,6 +1,8 @@
 var canvas = document.getElementById("minas");
 var ctx = canvas.getContext("2d");
+var sound = true;
 var px = [];
+createjs.Sound.registerSound("sound/fondo.wav", "background");
 
 function intro() {
     ctx.fillStyle = "black";
@@ -16,9 +18,9 @@ var introAnimation = setInterval(function () {
     intro();
     var aux = new pixel(0,Math.round(Math.random()*500));
     aux.print();
-    px.splice(0,0,aux);
+    px.push(aux);
     for(var i = 0;i < px.length;i++){
-        if(px[i].y > 500)px.pop(px.length-1);
+        if(px[i].y > 500)px.shift();
         else px[i].print();
     }
 },30);
