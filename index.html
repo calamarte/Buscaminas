@@ -24,16 +24,14 @@
     </nav>
   </header>
     <main>
-      <input type="button" value="Nueva partida" onclick="init()">
-      <div>
-        <canvas id="minas" width="500" height="500">
-        </canvas>
-      </div>
+        <canvas id="minas" width="500" height="500"></canvas>
+      <input id="newGame" type="button" value="Nueva partida" onclick="init()">
       <!--<div class="animacion col-12">-->
       	<!--<img src="mina.png" alt="una mina">-->
       <!--</div>-->
     </main>
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+    <script src="intro.js"></script>
     <script>
       var canvas = document.getElementById("minas");
       var p = canvas.getBoundingClientRect();
@@ -53,9 +51,9 @@
       createjs.Sound.registerSound("sound/bum.mp3", "bum");
       createjs.Sound.registerSound("sound/bandera.wav", "bandera");
 
-      //20
-      init();
+      intro();
       function init() {
+          stopAnimation();
           var y = 0;
           var x = 0;
           var cont = 0;
@@ -73,7 +71,7 @@
           }
           bombasPos();
           end = false;
-          if(end !== undefined && sound)createjs.Sound.play("inicio");
+          if(sound)createjs.Sound.play("inicio");
       }
       function bombasPos() {
           for(var i = 0; i < bombas ; i++){
@@ -201,6 +199,9 @@
                     a[i].explotar();
                     if (a[i].mina) {
                         end = true;
+                        setTimeout(function () {
+                           alert("Game Over");
+                        },1000);
                         if(sound) return createjs.Sound.play("bum");
                         else return;
                     }
@@ -214,15 +215,10 @@
                             }
                         }
                     }
-
                 }
             }
             if(sound)createjs.Sound.play("click");
         }
-
-      var backgroundsSound = setInterval(function () {
-          createjs.Sound.play("background");
-      },6000);
 
     </script>
   </body>
