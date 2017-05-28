@@ -25,13 +25,17 @@
   </header>
     <main>
         <canvas id="minas" width="500" height="500"></canvas>
-      <input id="newGame" type="button" value="Nueva partida" onclick="init()">
+      <div class="col-7 game">
+        <input id="newGame" type="button" value="Nueva partida" onclick="init()">
+        <div id="time"></div>
+      </div>
       <!--<div class="animacion col-12">-->
       	<!--<img src="mina.png" alt="una mina">-->
       <!--</div>-->
     </main>
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
     <script src="intro.js"></script>
+    <script src="reloj.js"></script>
     <script>
       var p = canvas.getBoundingClientRect();
       var a = [];
@@ -42,6 +46,7 @@
       var imgBandera = new Image();
       imgBandera.src = "css/img/bandera.png";
       var end;
+      var freeMode = true;
       createjs.Sound.registerSound("sound/inicio.wav", "inicio");
       createjs.Sound.registerSound("sound/click.wav", "click");
       createjs.Sound.registerSound("sound/bum.mp3", "bum");
@@ -67,6 +72,9 @@
           }
           bombasPos();
           end = false;
+          restartTime(freeMode);
+          if(freeMode)goFront();
+          else goBack();
           if(sound)createjs.Sound.play("inicio");
       }
       function bombasPos() {
@@ -192,6 +200,7 @@
                     if(a[i].bandera)return;
                     a[i].explotar();
                     if (a[i].mina) {
+                        stopTime(freeMode);
                         end = true;
                         setTimeout(function (){alert("Game Over");},1000);
                         if(sound) return createjs.Sound.play("bum");
@@ -200,7 +209,7 @@
                     a[i].bandera = false;
                     if(a[i].minacerca === 0){
                         for(var j = 0; j < 400;j++){
-                            if(a[j].minacerca === 0 && !a[j].mina && !explotado){
+                            if(a[j].minacerca === 0 && !a[j].mina && !a[j].explotado){
                                 if(a[j].bandera)continue;
                                 a[j].explotar();
                                 a[j].bandera = false;
