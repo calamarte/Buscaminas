@@ -24,6 +24,7 @@
     </nav>
   </header>
     <main>
+      <input type="button" value="Nueva partida" onclick="init()">
       <div>
         <canvas id="minas" width="500" height="500">
         </canvas>
@@ -32,7 +33,8 @@
       	<!--<img src="mina.png" alt="una mina">-->
       <!--</div>-->
     </main>
-    <script type="text/javascript">
+    <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+    <script>
       var canvas = document.getElementById("minas");
       var p = canvas.getBoundingClientRect();
       var ctx = canvas.getContext("2d");
@@ -44,7 +46,14 @@
       var imgBandera = new Image();
       imgBandera.src = "css/img/bandera.png";
       var end;
-        //20
+      var sound = true;
+      createjs.Sound.registerSound("sound/fondo.wav", "background");
+      createjs.Sound.registerSound("sound/inicio.wav", "inicio");
+      createjs.Sound.registerSound("sound/click.wav", "click");
+      createjs.Sound.registerSound("sound/bum.mp3", "bum");
+      createjs.Sound.registerSound("sound/bandera.wav", "bandera");
+
+      //20
       init();
       function init() {
           var y = 0;
@@ -64,6 +73,7 @@
           }
           bombasPos();
           end = false;
+          if(end !== undefined && sound)createjs.Sound.play("inicio");
       }
       function bombasPos() {
           for(var i = 0; i < bombas ; i++){
@@ -91,13 +101,13 @@
                   }
               }
 
-              //fallan limites
+              //Izquierda
               if (lateral !== 1){
                   if (r - 1 >= 0 && !a[r-1].mina)a[r-1].minacerca++;
                   if (r - 21 >= 0 && !a[r-21].mina)a[r-21].minacerca++;
                   if (r + 19 < 400 && !a[r+19].mina)a[r+19].minacerca++;
               }
-
+              //Derecha
               if (lateral !== 2){
                   if (r - 19 >= 0 && !a[r-19].mina)a[r-19].minacerca++;
                   if (r + 1 < 400 && !a[r+1].mina)a[r+1].minacerca++;
@@ -163,19 +173,24 @@
       canvas.addEventListener("click",function (e) {
           var x = e.clientX - p.left;
           var y = e.clientY - p.top;
-          if(!end) jugar(x,y);
+          if(!end) {
+              jugar(x,y);
+          }
+
       });
       canvas.addEventListener("contextmenu",function (e){
           e.preventDefault();
           var x = e.clientX - p.left;
           var y = e.clientY - p.top;
-          if(!end) ponerBandera(x,y);
+          if(!end)ponerBandera(x,y);
       });
 
       function ponerBandera(x,y) {
           for(var i = 0; i < a.length;i++){
               if (x < (a[i].x +tam) && x > a[i].x && y < (a[i].y + tam) && y > a[i].y){
                   a[i].pintarBandera();
+                  if (sound && a[i].bandera)createjs.Sound.play("bandera");
+                  break;
               }
           }
       }
@@ -184,7 +199,11 @@
                 if (x < (a[i].x +tam) && x > a[i].x && y < (a[i].y + tam) && y > a[i].y){
                     if(a[i].bandera)return;
                     a[i].explotar();
-                    if (a[i].mina) end = true;
+                    if (a[i].mina) {
+                        end = true;
+                        if(sound) return createjs.Sound.play("bum");
+                        else return;
+                    }
                     a[i].bandera = false;
                     if(a[i].minacerca === 0){
                         for(var j = 0; j < 400;j++){
@@ -195,9 +214,15 @@
                             }
                         }
                     }
+
                 }
             }
+            if(sound)createjs.Sound.play("click");
         }
+
+      var backgroundsSound = setInterval(function () {
+          createjs.Sound.play("background");
+      },6000);
 
     </script>
   </body>
