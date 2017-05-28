@@ -34,26 +34,64 @@
          <option value="dificil">Difícil</option>
        </select>
          </div>
-         <div class="tamaño">
-         <label for="tamaño">Tamaño</label>
-       <select name="tamaño" id="tamaño">
-         <option value="pequeño">Pequeño</option>
-         <option selected value="mediano">Mediano</option>
-         <option value="grande">Grande</option>
+         <div class="modo">
+         <label for="modo">Modo</label>
+       <select name="modo" id="modo">
+         <option selected value="libre">Libre</option>
+         <option value="contrareloj">Contrareloj</option>
        </select>
          </div>
          <div class="sonido">
          <label for="sonido">Sonido</label>
        <select name="sonido" id="sonido">
          <option value="mute">Silencio</option>
-         <option selected="" value="normal">Normal</option>
-         <option value="fuerte">Fuerte</option>
+         <option selected value="normal">Normal</option>
        </select>
+         </div>
+         <div class="apli">
+         <input type="button" value="Aplicar" onclick="getInfo()">
          </div>
      </form>
    </section>
     <div class="animacion col-12">
         <img src="mina.png" alt="una mina">
     </div>
+    <script type="text/javascript">
+        function getInfo() {
+            var dificultad = document.getElementById("dificultad").value;
+            var modo = document.getElementById("modo").value;
+            var sonido = document.getElementById("sonido").value;
+
+            switch (dificultad){
+                case "facil":
+                    localStorage.setItem("dificultad",JSON.stringify(10));
+                    break;
+                case "normal":
+                    localStorage.setItem("dificultad",JSON.stringify(25));
+                    break;
+                case "dificil":
+                    localStorage.setItem("dificultad",JSON.stringify(50));
+                    break;
+            }
+
+            switch (modo){
+                case "libre":
+                    localStorage.setItem("modo",JSON.stringify(true));
+                    break;
+                case "contrareloj":
+                    localStorage.setItem("modo",JSON.stringify(false));
+                    break;
+            }
+
+            switch (sonido){
+                case "mute":
+                    localStorage.setItem("sonido",JSON.stringify(false));
+                    break;
+                case "normal":
+                    localStorage.setItem("sonido",JSON.stringify(true));
+                    break;
+            }
+        }
+    </script>
   </body>
 </html>

@@ -195,14 +195,20 @@ input,textarea,select{
     color: #E0E0E0;
 }
 
+.config .apli{
+	width: 90%;
+}
+
 .animacion img{
+	height: 150px;
+	width: 150px;
 	animation: movimiento 3s infinite;
 }
 
 @keyframes movimiento{
 	50%{
         transform:rotate(360deg);
-        margin-left: calc(100% - 255px);
+        margin-left: calc(100% - 150px);
 	}
 	
 	100%{

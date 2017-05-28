@@ -40,13 +40,23 @@
       var p = canvas.getBoundingClientRect();
       var a = [];
       var tam = 25;//25
-      var bombas = 10;//limite 358
+      var bombas;
+      var freeMode;
+      if(localStorage.getItem("dificultad")){
+          bombas = JSON.parse(localStorage.getItem("dificultad"));
+          freeMode = JSON.parse(localStorage.getItem("modo"));
+          sound = JSON.parse(localStorage.getItem("sonido"));
+      }else {
+          bombas = 25;
+          freeMode = true;
+      }
+
+      //limite 358
       var imgMina = new Image();
       imgMina.src = "css/img/mina.png";
       var imgBandera = new Image();
       imgBandera.src = "css/img/bandera.png";
       var end = false;
-      var freeMode = false;
       createjs.Sound.registerSound("sound/inicio.wav", "inicio");
       createjs.Sound.registerSound("sound/click.wav", "click");
       createjs.Sound.registerSound("sound/bum.mp3", "bum");
@@ -74,11 +84,8 @@
           }
           bombasPos();
           end = false;
-          if (tm) restartTime(freeMode);
-          else {
-              if (freeMode) goFront();
-              else goBack();
-          }
+          if (freeMode) goFront();
+          else goBack();
           if(sound)createjs.Sound.play("inicio");
       }
       function bombasPos() {
@@ -207,11 +214,11 @@
                         loseProtocol();
                         return;
                     }
-                    a[i].bandera = false;
                     if(win()) {
                         winProtocol();
                         return;
                     }
+                    a[i].bandera = false;
                     if(a[i].minacerca === 0){
                         for(var j = 0; j < 400;j++){
                             if(a[j].minacerca === 0 && !a[j].mina && !a[j].explotado){
@@ -226,13 +233,12 @@
             if(sound)createjs.Sound.play("click");
         }
 
-        function winProtocol() {
+      function winProtocol() {
             stopTime(freeMode);
             end = true;
             setTimeout(function () {alert("Has Ganado")},1000);
             if(sound)return createjs.Sound.play("win");
         }
-
       function loseProtocol() {
           showAllMines();
           stopTime(freeMode);
