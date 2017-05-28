@@ -25,6 +25,30 @@ function goFront() {
 }
 
 function goBack() {
+    m = 3;
+    goB = setInterval(function () {
+        if(s === 0){
+            if(m === 0){
+                if(h === 0) {
+                    document.getElementById("time").innerHTML = "Modo contrareloj : 0"+h+":0"+m+":0"+s;
+                    loseProtocol();
+                    clearInterval(goB);
+                    return;
+                }
+                else h--,m=60;
+            }else m--,s=60;
+        }else s--;
+
+        var hh,mm,ss;
+        if(s < 10)ss = "0"+s;
+        else ss = JSON.stringify(s);
+        if(m < 10)mm = "0"+m;
+        else mm = JSON.stringify(m);
+        if(h < 10)hh = "0"+h;
+        else hh = JSON.stringify(h);
+
+        document.getElementById("time").innerHTML = "Modo contrareloj : "+hh+":"+mm+":"+ss;
+    },1000);
 
 }
 

@@ -36,21 +36,23 @@
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
     <script src="intro.js"></script>
     <script src="reloj.js"></script>
-    <script>
+    <script type="text/javascript">
       var p = canvas.getBoundingClientRect();
       var a = [];
       var tam = 25;//25
-      var bombas = 25;//limite 358
+      var bombas = 10;//limite 358
       var imgMina = new Image();
       imgMina.src = "css/img/mina.png";
       var imgBandera = new Image();
       imgBandera.src = "css/img/bandera.png";
-      var end;
+      var end = false;
       var freeMode = true;
       createjs.Sound.registerSound("sound/inicio.wav", "inicio");
       createjs.Sound.registerSound("sound/click.wav", "click");
       createjs.Sound.registerSound("sound/bum.mp3", "bum");
       createjs.Sound.registerSound("sound/bandera.wav", "bandera");
+      createjs.Sound.registerSound("sound/win.wav", "win");
+
 
       intro();
       function init() {
@@ -194,19 +196,20 @@
               }
           }
       }
-        function jugar(x,y) {
+      function jugar(x,y) {
             for(var i = 0; i < a.length;i++){
                 if (x < (a[i].x +tam) && x > a[i].x && y < (a[i].y + tam) && y > a[i].y){
                     if(a[i].bandera)return;
                     a[i].explotar();
                     if (a[i].mina) {
-                        stopTime(freeMode);
-                        end = true;
-                        setTimeout(function (){alert("Game Over");},1000);
-                        if(sound) return createjs.Sound.play("bum");
-                        else return;
+                        loseProtocol();
+                        return;
                     }
                     a[i].bandera = false;
+                    if(win()) {
+                        winProtocol();
+                        return;
+                    }
                     if(a[i].minacerca === 0){
                         for(var j = 0; j < 400;j++){
                             if(a[j].minacerca === 0 && !a[j].mina && !a[j].explotado){
@@ -221,6 +224,35 @@
             if(sound)createjs.Sound.play("click");
         }
 
-    </script>
+        function winProtocol() {
+            stopTime(freeMode);
+            end = true;
+            setTimeout(function () {alert("Has Ganado")},1000);
+            if(sound)return createjs.Sound.play("win");
+        }
+
+      function loseProtocol() {
+          showAllMines();
+          stopTime(freeMode);
+          end = true;
+          setTimeout(function (){alert("Game Over");},1000);
+          if(sound) return createjs.Sound.play("bum");
+      }
+
+      function win() {
+          var contador = 0;
+          for(var i = 0; i < 400;i++)if(a[i].explotado)contador++;
+          if(contador === (400 - bombas))return true;
+          else return false;
+      }
+
+      function showAllMines() {
+          for(var i = 0; i < 400;i++){
+              if(a[i].mina && !a[i].explotado)a[i].explotar();
+          }
+      }
+
+
+     </script>
   </body>
 </html>

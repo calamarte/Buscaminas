@@ -226,6 +226,9 @@ input,textarea,select{
 	width: 100%;
 	height: 40px;
 }
+#newGame:hover{
+	background-color: #4527A0;;
+}
 #time{
 
 }
