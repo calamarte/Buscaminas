@@ -46,7 +46,7 @@
       var imgBandera = new Image();
       imgBandera.src = "css/img/bandera.png";
       var end = false;
-      var freeMode = true;
+      var freeMode = false;
       createjs.Sound.registerSound("sound/inicio.wav", "inicio");
       createjs.Sound.registerSound("sound/click.wav", "click");
       createjs.Sound.registerSound("sound/bum.mp3", "bum");
@@ -74,9 +74,11 @@
           }
           bombasPos();
           end = false;
-          restartTime(freeMode);
-          if(freeMode)goFront();
-          else goBack();
+          if (tm) restartTime(freeMode);
+          else {
+              if (freeMode) goFront();
+              else goBack();
+          }
           if(sound)createjs.Sound.play("inicio");
       }
       function bombasPos() {

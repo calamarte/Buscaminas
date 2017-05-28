@@ -6,6 +6,9 @@ var m = 0;
 var s = 0;
 var goF;
 var goB;
+var start = 3;
+var tm = false;
+
 
 function goFront() {
     goF = setInterval(function () {
@@ -22,10 +25,11 @@ function goFront() {
 
         document.getElementById("time").innerHTML = "Modo libre : "+hh+":"+mm+":"+ss;
     },1000);
+    tm = true;
 }
 
 function goBack() {
-    m = 3;
+    m = start;
     goB = setInterval(function () {
         if(s === 0){
             if(m === 0){
@@ -33,7 +37,6 @@ function goBack() {
                     document.getElementById("time").innerHTML = "Modo contrareloj : 0"+h+":0"+m+":0"+s;
                     loseProtocol();
                     clearInterval(goB);
-                    return;
                 }
                 else h--,m=60;
             }else m--,s=60;
@@ -49,17 +52,21 @@ function goBack() {
 
         document.getElementById("time").innerHTML = "Modo contrareloj : "+hh+":"+mm+":"+ss;
     },1000);
-
+    tm = true;
 }
 
 function restartTime(freeMode) {
     if (freeMode)h=0,m=0,s=0;
-    else {}
+    else {
+        stopTime(freeMode);
+        goBack();
+    }
 }
 
 function stopTime(freeMode) {
     if (freeMode)clearInterval(goF);
     else clearInterval(goB);
+    tm = false;
 }
 
 

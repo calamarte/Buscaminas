@@ -225,12 +225,13 @@ input,textarea,select{
 #newGame{
 	width: 100%;
 	height: 40px;
+	font-size: 1.5em;
 }
 #newGame:hover{
 	background-color: #4527A0;;
 }
 #time{
-
+	font-size: 2em;
 }
 
 
