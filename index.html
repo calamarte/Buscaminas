@@ -236,14 +236,14 @@
       function winProtocol() {
             stopTime(freeMode);
             end = true;
-            setTimeout(function () {alert("Has Ganado")},1000);
+            setTimeout(function () {alert("Has Ganado")},4000);
             if(sound)return createjs.Sound.play("win");
         }
       function loseProtocol() {
           showAllMines();
           stopTime(freeMode);
           end = true;
-          setTimeout(function (){alert("Game Over");},1000);
+          setTimeout(function (){alert("Game Over");},1500);
           if(sound) return createjs.Sound.play("bum");
       }
 

@@ -40,8 +40,8 @@ function goBack() {
                         loseProtocol();
                         clearInterval(goB);
                     }
-                    else h--, m = 60;
-                } else m--, s = 60;
+                    else h--, m = 59;
+                } else m--, s = 59;
             } else s--;
 
             var hh, mm, ss;
