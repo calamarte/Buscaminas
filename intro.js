@@ -1,8 +1,11 @@
 var canvas = document.getElementById("minas");
 var ctx = canvas.getContext("2d");
-var sound = true;
+var sound;
 var px = [];
 createjs.Sound.registerSound("sound/fondo.wav", "background");
+
+if(localStorage.getItem("dificultad"))sound = JSON.parse(localStorage.getItem("sonido"));
+else sound = true;
 
 function intro() {
     ctx.fillStyle = "black";
@@ -25,9 +28,11 @@ var introAnimation = setInterval(function () {
     }
 },30);
 
-var backgroundsSound = setInterval(function () {
-    createjs.Sound.play("background");
-},6850);
+if(sound) {
+    var backgroundsSound = setInterval(function () {
+        createjs.Sound.play("background");
+    }, 6850);
+}
 
 function pixel(y,x) {
     this.x = x;

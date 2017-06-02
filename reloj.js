@@ -57,14 +57,6 @@ function goBack() {
     tm = true;
 }
 
-// function restartTime(freeMode) {
-//     h=0,m=0,s=0;
-//     if (!freeMode) {
-//         stopTime(freeMode);
-//
-//         goBack();
-//     }
-// }
 
 function stopTime(freeMode) {
     if(tm) {

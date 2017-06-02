@@ -98,7 +98,7 @@
 
               a[r].mina = true;
               var lateral = 0;
-              for(var j = 0,aux = 20; j < 19; j++,aux+=20){
+              for(var j = 0,aux = 0; j < 20; j++,aux+=20){
                   if (r === aux){
                       lateral = 1;
                       break;
@@ -106,7 +106,7 @@
               }
 
               if (lateral === 0){
-                  for(var j = 0,aux = 19; j < 19; j++,aux+=20){
+                  for(var j = 0,aux = 19; j < 20; j++,aux+=20){
                       if (r === aux){
                           lateral = 2;
                           break;
