@@ -29,13 +29,16 @@
         <input id="newGame" type="button" value="Nueva partida" onclick="init()">
         <div id="time"></div>
       </div>
+      <div class="puntuacion col-7" id="puntuacion">
+      </div>
       <!--<div class="animacion col-12">-->
       	<!--<img src="mina.png" alt="una mina">-->
       <!--</div>-->
     </main>
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-    <script src="intro.js"></script>
-    <script src="reloj.js"></script>
+    <script src="js/intro.js"></script>
+    <script src="js/puntuacion.js"></script>
+    <script src="js/reloj.js"></script>
     <script type="text/javascript">
       var p = canvas.getBoundingClientRect();
       var a = [];
@@ -50,6 +53,7 @@
           bombas = 25;
           freeMode = true;
       }
+
 
       //limite 358
       var imgMina = new Image();
@@ -236,7 +240,20 @@
       function winProtocol() {
             stopTime(freeMode);
             end = true;
-            setTimeout(function () {alert("Has Ganado")},4000);
+            setTimeout(function () {
+                alert("Has Ganado");
+                if(freeMode) {
+                    var nombre = window.prompt("Escribe tu nombre");
+                    var puntuacion = new usuario(nombre, getDificultad(JSON.parse(bombas)), tiempoFinal);
+                    var tpl;
+                    if (localStorage.getItem("tuplas")) {
+                        tpl = JSON.parse(localStorage.getItem("tuplas"));
+                        tpl.push(puntuacion);
+                    } else tpl = [puntuacion];
+                    localStorage.setItem("tuplas", JSON.stringify(tpl));
+                    crearTabla();
+                }
+            },4000);
             if(sound)return createjs.Sound.play("win");
         }
       function loseProtocol() {
@@ -262,5 +279,6 @@
 
 
      </script>
+    <script src="js/ganador.js"></script>
   </body>
 </html>

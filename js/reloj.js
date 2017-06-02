@@ -8,6 +8,7 @@ var goF;
 var goB;
 var start = 3;
 var tm = false;
+var tiempoFinal;
 
 
 function goFront() {
@@ -16,15 +17,8 @@ function goFront() {
             s++;
             if (s > 60) m++, s = 0;
             if (m > 60) h++, m = 0;
-            var hh, mm, ss;
-            if (s < 10) ss = "0" + s;
-            else ss = JSON.stringify(s);
-            if (m < 10) mm = "0" + m;
-            else mm = JSON.stringify(m);
-            if (h < 10) hh = "0" + h;
-            else hh = JSON.stringify(h);
 
-            document.getElementById("time").innerHTML = "Modo libre : " + hh + ":" + mm + ":" + ss;
+            document.getElementById("time").innerHTML = "Modo libre : "+timeToString();
         }, 1000);
     tm = true;
 }
@@ -44,15 +38,7 @@ function goBack() {
                 } else m--, s = 59;
             } else s--;
 
-            var hh, mm, ss;
-            if (s < 10) ss = "0" + s;
-            else ss = JSON.stringify(s);
-            if (m < 10) mm = "0" + m;
-            else mm = JSON.stringify(m);
-            if (h < 10) hh = "0" + h;
-            else hh = JSON.stringify(h);
-
-            document.getElementById("time").innerHTML = "Modo contrareloj : " + hh + ":" + mm + ":" + ss;
+            document.getElementById("time").innerHTML = "Modo contrareloj : " + timeToString();
         }, 1000);
     tm = true;
 }
@@ -60,11 +46,24 @@ function goBack() {
 
 function stopTime(freeMode) {
     if(tm) {
+        tiempoFinal = timeToString();
         h=0,m=0,s=0;
         if (freeMode) clearInterval(goF);
         else clearInterval(goB);
         tm = false;
     }
+}
+
+function timeToString() {
+    var hh, mm, ss;
+    if (s < 10) ss = "0" + s;
+    else ss = JSON.stringify(s);
+    if (m < 10) mm = "0" + m;
+    else mm = JSON.stringify(m);
+    if (h < 10) hh = "0" + h;
+    else hh = JSON.stringify(h);
+
+    return hh + ":" + mm + ":" + ss;
 }
 
 

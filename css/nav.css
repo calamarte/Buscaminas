@@ -4,7 +4,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Orbitron';
-    /*border:1px solid white;/**/
+   /* border:1px solid white;/**/
 }
 
 header{
@@ -196,7 +196,8 @@ input,textarea,select{
 }
 
 .config .apli{
-	width: 90%;
+	margin-left: 20%;
+	width: 80%;
 }
 
 .animacion img{
@@ -204,6 +205,14 @@ input,textarea,select{
 	width: 150px;
 	animation: movimiento 3s infinite;
 }
+
+.apli input{
+	width:80%;
+}
+
+/*#puntuacion {*/
+	/*margin-left: 20%;*/
+/*}*/
 
 @keyframes movimiento{
 	50%{
@@ -238,6 +247,11 @@ input,textarea,select{
 }
 #time{
 	font-size: 2em;
+}
+
+#puntuacion{
+	margin-left: 20px;
+	border:1px solid white;
 }
 
 
