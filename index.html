@@ -54,8 +54,6 @@
           freeMode = true;
       }
 
-
-      //limite 358
       var imgMina = new Image();
       imgMina.src = "css/img/mina.png";
       var imgBandera = new Image();
@@ -77,7 +75,7 @@
           for(var i = 0; i < 20;i++){
               for(var j = 0; j < 20;j++){
                   var aux = new celda(tam,x,y);
-                  a[cont] = (new celda(tam,x,y));
+                  a[cont] = (aux);
                   aux.pintarIn();
                   aux.pintarBo();
                   x += tam;
@@ -244,14 +242,16 @@
                 alert("Has Ganado");
                 if(freeMode) {
                     var nombre = window.prompt("Escribe tu nombre");
-                    var puntuacion = new usuario(nombre, getDificultad(JSON.parse(bombas)), tiempoFinal);
-                    var tpl;
-                    if (localStorage.getItem("tuplas")) {
-                        tpl = JSON.parse(localStorage.getItem("tuplas"));
-                        tpl.push(puntuacion);
-                    } else tpl = [puntuacion];
-                    localStorage.setItem("tuplas", JSON.stringify(tpl));
-                    crearTabla();
+                    if(nombre !== null) {
+                        var puntuacion = new usuario(nombre, getDificultad(JSON.parse(bombas)), tiempoFinal);
+                        var tpl;
+                        if (localStorage.getItem("tuplas")) {
+                            tpl = JSON.parse(localStorage.getItem("tuplas"));
+                            tpl.push(puntuacion);
+                        } else tpl = [puntuacion];
+                        localStorage.setItem("tuplas", JSON.stringify(tpl));
+                        crearTabla();
+                    }
                 }
             },4000);
             if(sound)return createjs.Sound.play("win");

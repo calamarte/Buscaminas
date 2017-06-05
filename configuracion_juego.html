@@ -57,24 +57,64 @@
         <img src="mina.png" alt="una mina">
     </div>
     <script type="text/javascript">
-        function getInfo() {
-            var dificultad = document.getElementById("dificultad").value;
-            var modo = document.getElementById("modo").value;
-            var sonido = document.getElementById("sonido").value;
+        setSelected();
+        function setSelected() {
+            if(!localStorage.getItem("dificultad"))return;
+            var dificultad = localStorage.getItem("dificultad");
+            var modo = localStorage.getItem("modo");
+            var sonido = localStorage.getItem("sonido");
 
             switch (dificultad){
-                case "facil":
-                    localStorage.setItem("dificultad",JSON.stringify(10));
+                case "10":
+                    document.getElementById("dificultad").getElementsByTagName('option')[0].selected = 'selected';
                     break;
-                case "normal":
-                    localStorage.setItem("dificultad",JSON.stringify(25));
+                case "25":
+                    document.getElementById("dificultad").getElementsByTagName('option')[1].selected = 'selected';
                     break;
-                case "dificil":
-                    localStorage.setItem("dificultad",JSON.stringify(50));
+                case "50":
+                    document.getElementById("dificultad").getElementsByTagName('option')[2].selected = 'selected';
                     break;
             }
 
             switch (modo){
+                case "true":
+                    document.getElementById("modo").getElementsByTagName('option')[0].selected = 'selected';
+                    break;
+                case "false":
+                    document.getElementById("modo").getElementsByTagName('option')[1].selected = 'selected';
+                    break;
+            }
+
+            switch (sonido){
+                case "false":
+                    document.getElementById("sonido").getElementsByTagName('option')[0].selected = 'selected';
+                    break;
+                case "true":
+                    document.getElementById("sonido").getElementsByTagName('option')[1].selected = 'selected';
+                    break;
+            }
+        }
+        function getInfo() {
+            var dificultad = document.getElementById("dificultad");
+            var modo = document.getElementById("modo");
+            var sonido = document.getElementById("sonido");
+
+            switch (dificultad.value){
+                case "facil":
+                    localStorage.setItem("dificultad",JSON.stringify(10));
+                    dificultad.getElementsByTagName('option')[0].selected = 'selected';
+                    break;
+                case "normal":
+                    localStorage.setItem("dificultad",JSON.stringify(25));
+                    dificultad.getElementsByTagName('option')[1].selected = 'selected';
+                    break;
+                case "dificil":
+                    localStorage.setItem("dificultad",JSON.stringify(50));
+                    dificultad.getElementsByTagName('option')[2].selected = 'selected';
+                    break;
+            }
+
+            switch (modo.value){
                 case "libre":
                     localStorage.setItem("modo",JSON.stringify(true));
                     break;
@@ -83,7 +123,7 @@
                     break;
             }
 
-            switch (sonido){
+            switch (sonido.value){
                 case "mute":
                     localStorage.setItem("sonido",JSON.stringify(false));
                     break;
