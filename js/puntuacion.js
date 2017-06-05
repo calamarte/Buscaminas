@@ -3,7 +3,7 @@ function crearTabla() {
     var aux = document.getElementById("puntuacion");
     if(aux.firstChild)aux.removeChild(aux.firstChild);
     var tabla = document.createElement('table');
-    tabla.style = "width:100%;text-align:center";
+    tabla.style = "width:100%;text-align:center;";
     cabecera();
     if (localStorage.getItem("tuplas")) tablaCuerpo();
     document.getElementById("puntuacion").appendChild(tabla);
