@@ -88,25 +88,20 @@
         });
 
         var yo = new google.maps.Marker({map:map});
-            yo.setPosition(center);
-            yo.setTitle("Aquí estoy yo");
-
+        var yoInfo = new google.maps.InfoWindow;
+        yoInfo.setContent("<div>" +
+            "Jose Navarro Garbayo" +
+            "<br> Correo: calamarte@gmail.com" +
+            "<br> Telf. 636 567 765" +
+            "</div>");
+        yo.setPosition(center);
+        yo.setTitle("Aquí estoy yo");
 
             map.setCenter(center);
 
             yo.addListener('click', function () {
-                if (yo.getAnimation() !== null)yo.setAnimation(null);
-                else yo.setAnimation(google.maps.Animation.BOUNCE);
+                yoInfo.open(map,yo);
             });
-//            var cityCircle = new google.maps.Circle({
-//                strokeColor: "green",
-//                strokeWeight: 2,
-//                fillColor: 'green',
-//                fillOpacity: 0.8,
-//                map: map,
-//                center: pos,
-//                radius: position.coords.accuracy
-//            });
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsuvb7EFri5O-cy7YIRMEjeKmCd6Kn9JU&callback=initMap"
