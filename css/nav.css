@@ -64,13 +64,6 @@ section{
 	height: 500px;
 }
 
-.mapa iframe{
-	width: 100%;
-	height: 90%;
-	border: 5px outset grey;
-	border-radius: 15px;
-}
-
 .formulario div,#enviar{
 	margin-left: 15%;
 	margin-top:25px;
@@ -274,6 +267,12 @@ input,textarea,select{
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #555;
+}
+
+#map{
+	width: 100%;
+	height: 100%;
+	color: #0d0d0d;
 }
 
 
