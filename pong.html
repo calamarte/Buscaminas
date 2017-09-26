@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Orbitron|Press+Start+2P|VT323');
+    </style>
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+</head>
+<body style="background-color: grey">
+<header class="col-12">
+    <h1>Pong</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Indice</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="quien_soy.html">¿Quien soy?</a></li>
+            <li><a href="ayuda.html">Ayuda</a></li>
+            <li><a href="configuracion_juego.html">Configuración del juego</a></li>
+            <li><a href="pong.html">Pong</a></li>
+        </ul>
+    </nav>
+</header>
+<canvas width="1000" height="500" id="space"></canvas>
+<div class="col-2 game">
+    <h1>J1</h1>
+    <input id="q" type="button" value="Q">
+    <input id="a" type="button" value="A">
+    <h1>J2</h1>
+    <input id="p" type="button" value="P">
+    <input id="ñ" type="button" value="Ñ">
+</div>
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById("space");
+    var ctx = canvas.getContext("2d");
+    var x = Math.floor(Math.random() * 500);
+    var vx = 1;
+    var y = Math.floor(Math.random() * 500);
+    var vy = 1;
+    var jugadorI = new barra(0,255);
+    var jugadorD = new barra(980,255);
+    var puntI = 0;
+    var puntD = 0;
+
+    function barra (x,y) {
+        this.x = x;
+        this.y = y;
+        this.w = 20;
+        this.h = 150;
+
+        this.dibujar = function() {
+            ctx.beginPath();
+            ctx.fillStyle = "white";
+            ctx.fillRect(this.x,this.y,this.w,this.h);
+        }
+    }
+
+setInterval(function ()  {
+    pintarFondo();
+    jugadorI.dibujar();
+    jugadorD.dibujar();
+
+    x += vx;
+    y += vy;
+
+    if((x-10 === jugadorI.x+jugadorI.w && y > jugadorI.y && y < jugadorI.y+jugadorI.h)
+    || x+10 === jugadorD.x && y > jugadorD.y && y < jugadorD.y+jugadorD.h){
+        vx *= -1;
+    }
+    else if(x <= 0) {
+        x = 500,y = 255;
+        puntI++;
+    }else if (x >= 1000){
+        x = 500,y = 255;
+        puntD++;
+    }
+
+    if(y-10 <= 0 || y+10 >= 500)vy *= -1;
+
+    pintarBola();
+
+    pintarPuntuacion();
+
+},1);
+
+addEventListener("keypress",function (e) {
+    if (e.key === "q" && jugadorI.y > 0){
+        jugadorI.y-=20;
+        document.getElementById("q").style.backgroundColor = "red";
+    }else document.getElementById("q").style.backgroundColor = "grey";
+    if (e.key === "a" && jugadorI.y < 500-jugadorI.h){
+        jugadorI.y+=20;
+        document.getElementById("a").style.backgroundColor = "red";
+    }else document.getElementById("a").style.backgroundColor = "grey";
+});
+
+addEventListener("keypress",function (e) {
+    if (e.key === "p" && jugadorD.y > 0){
+        jugadorD.y-=20;
+        document.getElementById("p").style.backgroundColor = "red";
+    }else document.getElementById("p").style.backgroundColor = "grey";
+    if (e.key === "ñ" && jugadorD.y < 500-jugadorD.h){
+        jugadorD.y+=20;
+        document.getElementById("ñ").style.backgroundColor = "red";
+    }else document.getElementById("ñ").style.backgroundColor = "grey";
+});
+
+function pintarFondo() {
+    ctx.beginPath();
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0,1000,500);
+    ctx.fillStyle = "white";
+    ctx.fillRect(495,0,10,500);
+}
+
+function pintarBola() {
+    ctx.beginPath();
+    ctx.fillStyle = "white";
+    ctx.arc(x,y,10,0,2*Math.PI);
+    ctx.fill();
+}
+
+function pintarPuntuacion() {
+    ctx.beginPath();
+    ctx.font = "80px Orbitron";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "white";
+    ctx.fillText(JSON.stringify(puntD),255,100);
+    ctx.fillText(JSON.stringify(puntI),755,100);
+}
+
+
+
+</script>
+</html>
